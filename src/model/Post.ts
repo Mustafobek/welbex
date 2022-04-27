@@ -12,7 +12,7 @@ const Post = database.define('Post', {
         allowNull: false
     },
     textContent: {
-        type: DataTypes.TEXT('long'),
+        type: DataTypes.STRING(2048),
         allowNull: false
     },
     mediaContent: {
