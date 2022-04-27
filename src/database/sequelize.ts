@@ -7,5 +7,11 @@ export default new Sequelize({
     username: DB_USERNAME,
     port: DB_PORT,
     dialect: 'postgres',
-    password: DB_PASSWORD
+    password: DB_PASSWORD,
+    dialectOptions: {
+        ssl: {
+            require: true, // This will help you. But you will see nwe error
+            rejectUnauthorized: false // This line will fix new error
+        }
+    }
 })

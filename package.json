@@ -7,6 +7,7 @@
     "start": "node ./dist/index.js",
     "dev": "env-cmd -f src/config/dev.env nodemon -e ts,hbs ./src/index.ts",
     "build": "tsc",
+    "postinstall": "tsc",
     "watch": "tsc -w"
   },
   "keywords": [],
