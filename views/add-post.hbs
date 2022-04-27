@@ -40,6 +40,7 @@
             body: formData
         }).then(r => r.json())
         .then(data => {
+            console.log(data)
             if(!data.error) {
                 window.location.href = '/'
             } else {
