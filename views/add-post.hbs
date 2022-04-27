@@ -40,11 +40,12 @@
             body: formData
         }).then(r => r.json())
         .then(data => {
-            if(!data.error) {
-                window.location.href = '/'
-            } else {
-                window.location.reload()
-            }
+            console.log(data)
+            // if(!data.error) {
+            //     window.location.href = '/'
+            // } else {
+            //     window.location.reload()
+            // }
         })
         .catch(err => {})
     }
