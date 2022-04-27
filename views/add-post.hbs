@@ -1,0 +1,53 @@
+{{>header}}
+{{>navbar}}
+
+<div class="container mt-5">
+    <form id="form">
+        <h1>Add post</h1>
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Title</label>
+            <input type="text" class="form-control" id="title" placeholder="Once upon a time" required>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Text content</label>
+            <textarea class="form-control" id="text-content" rows="3" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Media(pic, video allowed)*</label>
+            <input type="file" class="form-control" id="media">
+        </div>
+
+        <button class="btn btn-success">Add</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('form').onsubmit = ev => {
+        ev.preventDefault()
+        const input = document.querySelector('input[type="file"]')
+
+        const formData = new FormData()
+        formData.append('title', document.getElementById('title').value)
+        formData.append('textContent', document.getElementById('text-content').value)
+        formData.append('media', input.files[0])
+
+        fetch(host + endpoints.post, {
+            method: 'POST',
+            headers: {
+                // 'Content-type': 'multipart/form-data; boundary=—-WebKitFormBoundaryfgtsKTYLsT7PNUVD',
+                'Authorization': localStorage.getItem('token')
+            },
+            body: formData
+        }).then(r => r.json())
+        .then(data => {
+            if(!data.error) {
+                window.location.href = '/'
+            } else {
+                window.location.reload()
+            }
+        })
+        .catch(err => {})
+    }
+</script>
+
+{{>footer}}

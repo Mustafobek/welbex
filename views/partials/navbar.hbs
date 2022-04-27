@@ -1,0 +1,65 @@
+<style>
+    .navbar-light .navbar-nav .nav-link {
+        color: #000;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
+    <div class="container">
+        <a class="navbar-brand" href="/"
+        >
+            Welbex
+        </a>
+        <button
+                class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation"
+        >
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto align-items-center">
+                <li class="nav-item">
+                    <a class="nav-link mx-2 disabled" href="/add-post"><i class="fas fa-plus-circle pe-2"></i>Post</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-2 disabled" href="/my-posts"><i class="fas fa-box pe-2"></i>My posts</a>
+                </li>
+                <li class="nav-item ms-3" id="sign-in">
+                    <a class="btn btn-black btn-rounded" href="/login">Sign in</a>
+                </li>
+                <li class="nav-item ms-3" id="logout">
+                    <a class="btn btn-black btn-rounded" href="#" id="logout-btn">Logout</a>
+                </li>
+                <li class="nav-item" id="register">
+                    <a class="btn btn-black btn-rounded" href="/register">Sign up</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<script>
+    if (localStorage.getItem('token')) {
+        const disableds = document.querySelectorAll('.disabled')
+
+        for (const el of disableds) {
+            el.classList.remove('disabled')
+        }
+
+        document.getElementById('sign-in').style.display = 'none'
+        document.getElementById('register').style.display = 'none'
+    } else {
+        document.getElementById('logout').style.display = 'none'
+    }
+
+    document.getElementById('logout-btn').onclick = ev => {
+        ev.preventDefault()
+        localStorage.clear()
+        window.location.href = '/'
+    }
+</script>
